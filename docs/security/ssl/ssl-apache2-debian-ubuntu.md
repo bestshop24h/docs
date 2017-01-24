@@ -39,12 +39,14 @@ This guide assumes that you are running Apache 2.4 or higher on Debian 8 or Ubun
     :   ~~~ conf
         <VirtualHost *:443>
             SSLEngine On
-            SSLCertificateFile /etc/ssl/certs/example.com.crt
+            SSLCertificateFile /etc/ssl/certs/example.com.crt #if using letsencrypt,SSLCertificateFile /etc/letsencrypt/live/example.com/cert.pem
+       SSLCertificateKeyFile /etc/letsencrypt/live/example.com/privkey.pem #if using letsencrypt, SSLCertificateKeyFile /etc/letsencrypt/live/example.com/privkey.pem
             SSLCertificateKeyFile /etc/ssl/private/example.com.key
-            SSLCACertificateFile /etc/ssl/certs/ca-certificates.crt  #If using a self-signed certificate, omit this line
+            SSLCACertificateFile /etc/ssl/certs/ca-certificates.crt  #If using a self-signed or letsencrypt certificate, omit this line
 
             ServerAdmin info@example.com
             ServerName www.example.com
+            ServerAlias www.example.com
             DocumentRoot /var/www/html/example.com/public_html/
             ErrorLog /var/www/html/example.com/log/error.log
             CustomLog /var/www/html/example.com/log/access.log combined
