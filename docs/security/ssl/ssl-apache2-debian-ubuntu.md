@@ -50,7 +50,23 @@ This guide assumes that you are running Apache 2.4 or higher on Debian 8 or Ubun
             CustomLog /var/www/html/example.com/log/access.log combined
         </VirtualHost>
         ~~~
-
+      (if use self-signed certificate,the browser will alert "this is an unsafe url",so I recommend using letsencrypt,
+      by the way ,letsencrypt cannot be installed in debian6,recommend debian8(jessie))
+      if using letsencrypt to create an SSL certificate,the content of /etc/apache2/sites-available/example.com.conf should be like the       following
+      
+            <VirtualHost *:443>
+            SSLEngine On
+            SSLCertificateFile /etc/letsencrypt/live/example.com/cert.pem
+            SSLCertificateKeyFile /etc/letsencrypt/live/example.com/privkey.pem
+            ServerAdmin support@bestshop24h.com
+            ServerName example.com
+            ServerAlias www.example.com
+            DocumentRoot /var/www/html/example.com/public_html/
+            ErrorLog /var/www/html/example.com/log/error.log
+            CustomLog /var/www/html/example.com/log/access.log combined
+        </VirtualHost>
+      
+       
 2.  Ensure that the Apache SSL module is enabled, and enable the virtualhost configuration:
 
         a2enmod ssl
