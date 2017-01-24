@@ -50,6 +50,18 @@ This guide assumes that you are running Apache 2.4 or higher on Debian 8 or Ubun
             CustomLog /var/www/html/example.com/log/access.log combined
         </VirtualHost>
         ~~~
+            for letsencrypt 
+            <VirtualHost *:443>
+             SSLEngine On
+             SSLCertificateFile /etc/letsencrypt/live/example.com/cert.pem
+             SSLCertificateKeyFile /etc/letsencrypt/live/example.com/privkey.pem
+             ServerAdmin support@example.com
+             ServerName example.com
+             ServerAlias www.example.com
+             DocumentRoot /var/www/html/example.com/public_html/
+             ErrorLog /var/www/html/example.com/log/error.log
+             CustomLog /var/www/html/example.com/log/access.log combined
+        </VirtualHost>
 
 2.  Ensure that the Apache SSL module is enabled, and enable the virtualhost configuration:
 
