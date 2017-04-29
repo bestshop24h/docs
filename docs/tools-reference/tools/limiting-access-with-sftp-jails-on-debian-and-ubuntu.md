@@ -28,7 +28,7 @@ First, you need to configure OpenSSH.
 
 1.  Edit your `/etc/ssh/sshd_config` file with your favorite text editor:
 
-        vim /etc/ssh/sshd_config
+        vim /etc/ssh/sshd_config # you can also use: nano /etc/ssh/sshd_config
 
 2.  Add or modify the `Subsystem sftp` line to look like the following:
 
@@ -56,6 +56,12 @@ First, you need to configure OpenSSH.
         service ssh restart
 
 OpenSSH has been successfully modified.
+##Create a User
+useradd -d /home/username "username"#if for a domain's root directory,the command would be similar to :useradd -d /var/www/html/domainname "username"
+##Create a password for this user
+passwd username
+
+
 
 ## Modify User Accounts
 
