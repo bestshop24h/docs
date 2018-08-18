@@ -77,3 +77,36 @@ After configuration, some browsers may display the site correctly although error
 2.  Perform a deep analysis through the [Qualys SSL Labs SSL Server Test](https://www.ssllabs.com/ssltest/)
 
 You should now be able to visit your site with SSL enabled.
+##for let's encrypt
+after follow  https://www.linode.com/docs/security/ssl/install-lets-encrypt-to-create-ssl-certificates
+
+you need to do the following
+
+cd /etc/apache2/sites-available/
+nano yourdomain.com.conf
+
+add the following code at the bottom.
+
+<VirtualHost *:443>
+    SSLEngine On
+    SSLCertificateFile /etc/letsencrypt/live/yourdomain.com/cert.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/yourdomain.com/privkey.pem
+    SSLCertificateChainFile /etc/letsencrypt/live/yourdomain.com/fullchain.pem
+    ServerAdmin xxx@yourdomain.com
+    ServerName yourdomain.com
+    ServerAlias www.yourdomain.com
+    DocumentRoot /var/www/html/yourdomain.com/public_html/
+
+
+   <Directory "/var/www/html/yourdomain.com/public_html">
+       AllowOverride All
+       Require all granted
+   </Directory>
+
+
+</VirtualHost>
+
+a2enmod ssl
+a2enmod rewrite
+a2ensite yourdomain.com
+service apache2 restart
