@@ -107,3 +107,4 @@ Issue the following command to send a test email, substituting an external email
     echo "This is a test." | mail -s Testing someone@somedomain.com
 
 Congratulations! You've configured Exim to send email from your Linode.
+it also works for ubuntu16.04 and ubuntu18.04
